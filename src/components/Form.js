@@ -3,13 +3,7 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Trilha from './Trilha'
-
-const handleSubmit = text => event => {
-    return (
-        <Trilha />
-    )
-}
-
+    
 class FormTrilha extends React.Component {
     constructor(props) {
         super(props);
@@ -88,7 +82,7 @@ class FormTrilha extends React.Component {
                             <label class="label-trilha" for="data_inicial">Data Inicial:</label>
                         </div>
                         <div>
-                            <input class="date-form" name="data_inicial" type="date" onChange={e => this.dataInicial = e.target.value} />
+                            <input class="date-form"  name="data_inicial" type="date" onChange={e => new Date(this.dataInicial=e.target.value)} />
                         </div>
                     </div>
                     <div class="controle-form-right">
@@ -96,7 +90,7 @@ class FormTrilha extends React.Component {
                             <label class="label-trilha" for="data_final">Data Final:</label>
                         </div>
                         <div>
-                            <input class="date-form" name="data-final" type="date" onChange={e => this.dataFinal = e.target.value} />
+                            <input class="date-form"  name="data-final" type="date" onChange={e => new Date(this.dataFinal=e.target.value)} />
                         </div>
                     </div>
                 </div>
@@ -114,14 +108,12 @@ class Form extends React.Component {
         this.stateTrilha = false;
         this.handler = this.handler.bind(this)
     }
-    handler(event, cargoDesejado, dataInicial, dataFinal) {
-        event.preventDefault();
-        console.log('intervalo 1', dataInicial, dataFinal);
-        this.cargoDesejado = cargoDesejado;
-        this.dataInicial = dataInicial;
-        this.dataFinal = dataFinal;
-        console.log(this.cargoDesejado);
-        this.stateTrilha = true;
+    handler(event,cargoDesejado,dataInicial,dataFinal) {
+      event.preventDefault();
+      this.cargoDesejado = cargoDesejado;
+      this.dataInicial = new Date(dataInicial);
+      this.dataFinal = new Date(dataFinal);
+      this.stateTrilha = true;
 
         this.forceUpdate();
     }
