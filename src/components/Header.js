@@ -1,7 +1,13 @@
 import logo from '../mentoria.jpg'
-import './styles/Header.css'
+import './styles/Header.css';
 
 function Header(){
+    
+    const onLogout = (event) => {
+        localStorage.setItem('isAuthenticated',false);        
+        window.location.href = "/";
+    }
+
     return (
         <header>
             <div class="brand">
@@ -33,6 +39,11 @@ function Header(){
                         <li>
                             <a href="/about">
                                 Sobre Nós
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onClick={onLogout}>
+                                Sair
                             </a>
                         </li>
                     </ul>
